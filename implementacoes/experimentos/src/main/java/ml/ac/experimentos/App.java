@@ -2,6 +2,8 @@ package ml.ac.experimentos;
 
 import com.yahoo.labs.samoa.instances.Instance;
 
+import ml.ac.bases.FabricaDeBases;
+import ml.ac.experimentos.classificadores.FabricaDeClassificadores;
 import moa.classifiers.Classifier;
 import moa.classifiers.drift.DriftDetectionMethodClassifier;
 import moa.classifiers.trees.HoeffdingTree;
@@ -12,15 +14,11 @@ import moa.streams.InstanceStream;
 
 public class App 
 {
-	public static void experimento1(String base, Classifier classificador)
+	public static void experimento1(InstanceStream streamInstances, Classifier classificador)
 	{
 		boolean isTesting = true;
 		
 		Classifier learner = classificador;
-		
-		AbstractOptionHandler stream = new ArffFileStream(base, -1);
-		stream.prepareForUse();
-		InstanceStream streamInstances = (InstanceStream)stream;
 		
 		learner.setModelContext(streamInstances.getHeader());
         learner.prepareForUse();
@@ -46,29 +44,18 @@ public class App
 	
     public static void main( String[] args )
     {
-    	String baseLine = "src/main/resources/bases/line.arff";
     	
     	System.out.println("********* BASE LINE **************************");
     	System.out.println("Experimento com HoeffdingTree (Simples)");
-    	HoeffdingTree classificador1 = new HoeffdingTree();
-        experimento1(baseLine, classificador1);
+        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorSimples());
         
         System.out.println("Experimento com HoeffdingTree (DDM)");
-        DriftDetectionMethodClassifier classificador2 = new DriftDetectionMethodClassifier();
-        classificador2.baseLearnerOption.setValueViaCLIString("trees.HoeffdingTree");
-        classificador2.driftDetectionMethodOption.setValueViaCLIString("DDM");
-        experimento1(baseLine, classificador2);
+        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComDDM());
         
         System.out.println("Experimento com HoeffdingTree (EDDM)");
-        DriftDetectionMethodClassifier classificador3 = new DriftDetectionMethodClassifier();
-        classificador3.baseLearnerOption.setValueViaCLIString("trees.HoeffdingTree");
-        classificador3.driftDetectionMethodOption.setValueViaCLIString("EDDM");
-        experimento1(baseLine, classificador3);
+        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComEDDM());
         
-//        System.out.println("Experimento com HoeffdingTree (ADMIN)");
-//        DriftDetectionMethodClassifier classificador4 = new DriftDetectionMethodClassifier();
-//        classificador4.baseLearnerOption.setValueViaCLIString("trees.HoeffdingTree");
-//        classificador4.driftDetectionMethodOption.setValueViaCLIString("ADWINChangeDetector");
-//        experimento1(baseLine, classificador4);
+        System.out.println("Experimento com HoeffdingTree (ADMIN)");
+        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComADWIN2());
     }
 }
