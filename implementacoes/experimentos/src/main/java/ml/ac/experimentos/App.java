@@ -4,18 +4,17 @@ import com.yahoo.labs.samoa.instances.Instance;
 
 import ml.ac.bases.FabricaDeBases;
 import ml.ac.experimentos.classificadores.FabricaDeClassificadores;
+import ml.ac.model.ResultadoExperimento;
 import moa.classifiers.Classifier;
-import moa.classifiers.drift.DriftDetectionMethodClassifier;
-import moa.classifiers.trees.HoeffdingTree;
 import moa.core.TimingUtils;
-import moa.options.AbstractOptionHandler;
-import moa.streams.ArffFileStream;
 import moa.streams.InstanceStream;
 
 public class App 
 {
-	public static void experimento1(InstanceStream streamInstances, Classifier classificador)
+	public static ResultadoExperimento experimento1(String nomeExperimento, InstanceStream streamInstances, Classifier classificador)
 	{
+		ResultadoExperimento resultadoExperimento = new ResultadoExperimento(nomeExperimento);
+		
 		boolean isTesting = true;
 		
 		Classifier learner = classificador;
@@ -39,23 +38,18 @@ public class App
         }
         double accuracy = 100.0 * (double) numberSamplesCorrect/ (double) numberSamples;
         double time = TimingUtils.nanoTimeToSeconds(TimingUtils.getNanoCPUTimeOfCurrentThread()- evaluateStartTime);
-        System.out.println(numberSamples + " instances processed with " + accuracy + "% accuracy in "+time+" seconds.");
+        resultadoExperimento.setNumInstancias(numberSamples);
+        resultadoExperimento.setTempo(time);
+        resultadoExperimento.setAcuracia(accuracy);
+        resultadoExperimento.imprimeResultado();
+        return resultadoExperimento;
 	}
 	
     public static void main( String[] args )
     {
-    	
-    	System.out.println("********* BASE LINE **************************");
-    	System.out.println("Experimento com HoeffdingTree (Simples)");
-        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorSimples());
-        
-        System.out.println("Experimento com HoeffdingTree (DDM)");
-        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComDDM());
-        
-        System.out.println("Experimento com HoeffdingTree (EDDM)");
-        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComEDDM());
-        
-        System.out.println("Experimento com HoeffdingTree (ADMIN)");
-        experimento1(FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComADWIN2());
+        experimento1("Experimento com HoeffdingTree (Simples)", FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorSimples());
+        experimento1("Experimento com HoeffdingTree (DDM)", FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComDDM());
+        experimento1("Experimento com HoeffdingTree (EDDM)", FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComEDDM());
+        experimento1("Experimento com HoeffdingTree (ADWIN)",FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComADWIN2());
     }
 }
