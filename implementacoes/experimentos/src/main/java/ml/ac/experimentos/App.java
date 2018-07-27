@@ -31,6 +31,11 @@ public class App
                 if (isTesting) {
                         if (learner.correctlyClassifies(trainInst)){
                                 numberSamplesCorrect++;
+                                resultadoExperimento.adicionarIteracao(true);
+                        }
+                        else
+                        {
+                        	resultadoExperimento.adicionarIteracao(false);
                         }
                 }
                 numberSamples++;

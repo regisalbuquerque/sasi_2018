@@ -8,17 +8,28 @@ public class ResultadoExperimento {
 	private String nomeExperimento;
 	private Double tempo;
 	private Double acuracia;
-	private Integer numInstancias;
+	private int numInstancias;
+	
+	private int numAcertos;
 	
 	private List<ResultadoIteracao> listaResultadoIteracoes;
 
 	public ResultadoExperimento(String nomeExperimento) {
 		this.nomeExperimento = nomeExperimento;
-		listaResultadoIteracoes = new ArrayList<>();
+		this.listaResultadoIteracoes = new ArrayList<>();
+		
+		this.numAcertos = 0;
+		this.numInstancias = 0;
 	}
 	
-	public void adicionarIteracao(ResultadoIteracao resultadoIteracao)
+	public void adicionarIteracao(boolean acertou)
 	{
+		this.numInstancias++;
+		if (acertou) this.numAcertos++;
+		
+		double acuracia = 100.0 * (double) this.numAcertos/ (double) this.numInstancias;
+		
+		ResultadoIteracao resultadoIteracao = new ResultadoIteracao(this.numInstancias, acuracia);
 		listaResultadoIteracoes.add(resultadoIteracao);
 	}
 	
@@ -26,6 +37,9 @@ public class ResultadoExperimento {
 	{
 		System.out.println(this.nomeExperimento);
 		System.out.println(this.getNumInstancias() + " instances processed with " + this.getAcuracia() + "% accuracy in "+this.getTempo()+" seconds.");
+		for (ResultadoIteracao resultadoIteracao : listaResultadoIteracoes) {
+			System.out.println("ITERACAO " + resultadoIteracao.getIteracao() + " ACURÁCIA " + resultadoIteracao.getAcuracia());
+		}
 	}
 
 	public String getNomeExperimento() {
@@ -48,11 +62,11 @@ public class ResultadoExperimento {
 		this.acuracia = acuracia;
 	}
 
-	public Integer getNumInstancias() {
+	public int getNumInstancias() {
 		return numInstancias;
 	}
 
-	public void setNumInstancias(Integer numInstancias) {
+	public void setNumInstancias(int numInstancias) {
 		this.numInstancias = numInstancias;
 	}
 
