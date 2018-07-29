@@ -3,6 +3,9 @@ package ml.ac.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import ml.ac.util.CSVUtil;
+
+
 public class ResultadoExperimento {
 	
 	private String nomeExperimento;
@@ -49,6 +52,44 @@ public class ResultadoExperimento {
 		for (ResultadoIteracao resultadoIteracao : listaResultadoIteracoes) {
 			System.out.println("ITERACAO " + resultadoIteracao.getIteracao() + " ACURÁCIA " + resultadoIteracao.getAcuracia() + " PREQUENCIAL " + resultadoIteracao.getAcuraciaPrequencial());
 		}
+	}
+	
+	public void gravaResultadoCSV(String path)
+	{
+		//Gravar o CSV
+        CSVUtil csv = new CSVUtil(path, nomeExperimento + ".csv");
+        
+        csv.cabecalho("iteracao,acc_prequencial");
+        
+        
+        for (ResultadoIteracao resultadoIteracao : listaResultadoIteracoes) {
+        	csv.registro(resultadoIteracao.getIteracao() + ","
+        			+ resultadoIteracao.getAcuraciaPrequencial());
+		}
+
+        csv.fechar();
+	}
+	
+	public void gravaResultado30PartesCSV(String path)
+	{
+		//Gravar o CSV
+        CSVUtil csv = new CSVUtil(path, nomeExperimento + ".csv");
+        
+        csv.cabecalho("iteracao,acc_prequencial");
+        
+        int TAM = 30;
+        int particao =  this.getNumInstancias()/TAM;		  
+        
+        for (int i = 1; i<TAM+1; i++) {
+        	
+        	int index = i * particao;
+
+        	ResultadoIteracao resultadoIteracao = listaResultadoIteracoes.get(index);
+        	csv.registro(resultadoIteracao.getIteracao() + ","
+        			+ resultadoIteracao.getAcuraciaPrequencial());
+		}
+
+        csv.fechar();
 	}
 
 	public String getNomeExperimento() {
