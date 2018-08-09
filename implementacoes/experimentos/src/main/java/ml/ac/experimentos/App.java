@@ -61,9 +61,7 @@ public class App
         experimento1("LINE-" + EXPERIMENTO_CLASS_DDM, FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComDDM());
         experimento1("LINE-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComEDDM());
         experimento1("LINE-" + EXPERIMENTO_CLASS_ADWIN,FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComADWIN2());
-        
-        
-        
+
         experimento1("CIRCLE-" + EXPERIMENTO_CLASS_SIMPLES1, FabricaDeBases.baseCircle(), FabricaDeClassificadores.classificadorSimples());
         experimento1("CIRCLE-" + EXPERIMENTO_CLASS_DDM, FabricaDeBases.baseCircle(), FabricaDeClassificadores.classificadorComDDM());
         experimento1("CIRCLE-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseCircle(), FabricaDeClassificadores.classificadorComEDDM());
