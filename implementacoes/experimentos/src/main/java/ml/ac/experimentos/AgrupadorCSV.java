@@ -13,11 +13,11 @@ public class AgrupadorCSV {
 		String path = "/home/regis/Documents/git/sasi_2018/resultados_2/";
 		
 		int NUM_BASES=7;
-		int NUM_CLASSES = 4;
+		int NUM_CLASSES = 3;
 		int NUM_RESULTADOS = 30;
 		double[][][] acuraciaPrequencial = new double[NUM_BASES][NUM_CLASSES][NUM_RESULTADOS];
 		
-		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "EDDM", "ADWIN");
+		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "ADWIN");
 		List<String> listaBases = Arrays.asList("LINE", "CIRCLE", "GAUSS", "SINE1", "ELEC", "SPAM", "KDD");
 		
 		for (int b = 0; b < listaBases.size(); b++) {
@@ -40,7 +40,7 @@ public class AgrupadorCSV {
 		
 		//Gravar o CSV UNICO
 		
-		CSVUtil csvUtil = new CSVUtil(path, "resultado_unificado.csv");
+		CSVUtil csvUtil = new CSVUtil(path, "resultado_unificado_puro_ddm_eddm.csv");
 		
 		csvUtil.cabecalho("classificador,base,acc");
 		
