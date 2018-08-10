@@ -46,7 +46,7 @@ public class App
         resultadoExperimento.setNumInstancias(numberSamples);
         resultadoExperimento.setTempo(time);
         resultadoExperimento.setAcuracia(accuracy);
-        resultadoExperimento.gravaResultado30PartesCSV("/home/regis/Documents/git/sasi_2018/resultados/");
+        resultadoExperimento.gravaResultado30PartesCSV("/home/regis/Documents/git/sasi_2018/resultados_2/");
         return resultadoExperimento;
 	}
 	

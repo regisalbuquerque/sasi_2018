@@ -10,7 +10,7 @@ public class AgrupadorCSV {
 
 	public static void main(String[] args) {
 		
-		String path = "/home/regis/Documents/git/regis/sasi_2018/resultados/";
+		String path = "/home/regis/Documents/git/sasi_2018/resultados_2/";
 		
 		int NUM_BASES=7;
 		int NUM_CLASSES = 4;
@@ -20,25 +20,21 @@ public class AgrupadorCSV {
 		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "EDDM", "ADWIN");
 		List<String> listaBases = Arrays.asList("LINE", "CIRCLE", "GAUSS", "SINE1", "ELEC", "SPAM", "KDD");
 		
-		int i = 0; 
-		for (String base : listaBases) {
-			int j = 0;
-			for (String classificador : listaClassificadores) {
+		for (int b = 0; b < listaBases.size(); b++) {
+			for (int c = 0; c < listaClassificadores.size(); c++) {
 				
 				CSVLeitorUtil csvLeitor = new CSVLeitorUtil(path,
-															base +"-Experimento com HoeffdingTree ("+classificador+").csv");
+															listaBases.get(b) +"-Experimento com HoeffdingTree ("+listaClassificadores.get(c)+").csv");
 				String[] registro = null;
 
 				int z = 0;
 				csvLeitor.readLine(); //PULAR o CABEÇALHO
 		        while ( (registro = csvLeitor.readLine() ) != null) {
-		            acuraciaPrequencial[i][j][z++] = Double.parseDouble(registro[1]);
+		            acuraciaPrequencial[b][c][z++] = Double.parseDouble(registro[1]);
 
 		        }
 		        csvLeitor.fechar();
-		        j++;
 			}
-			i++;
 		}
 		
 		
