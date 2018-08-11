@@ -12,13 +12,15 @@ public class AgrupadorCSV {
 		
 		String path = "/home/regis/Documents/git/sasi_2018/resultados_2/";
 		
-		int NUM_BASES=7;
-		int NUM_CLASSES = 3;
+		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "EDDM");
+		List<String> listaBases = Arrays.asList("LINE", "CIRCLE", "GAUSS", "SINE1", "ELEC", "SPAM", "KDD");
+		
+		int NUM_BASES = listaBases.size();
+		int NUM_CLASSES = listaClassificadores.size();
 		int NUM_RESULTADOS = 30;
 		double[][][] acuraciaPrequencial = new double[NUM_BASES][NUM_CLASSES][NUM_RESULTADOS];
 		
-		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "ADWIN");
-		List<String> listaBases = Arrays.asList("LINE", "CIRCLE", "GAUSS", "SINE1", "ELEC", "SPAM", "KDD");
+		
 		
 		for (int b = 0; b < listaBases.size(); b++) {
 			for (int c = 0; c < listaClassificadores.size(); c++) {
@@ -48,7 +50,7 @@ public class AgrupadorCSV {
 		{
 			for (int c = 0; c < NUM_CLASSES ; c++) {
 				for (int b = 0; b < NUM_BASES; b++) {
-					csvUtil.registro(c + "," + b + "," + acuraciaPrequencial[b][c][res]);
+					csvUtil.registro(listaClassificadores.get(c) + "," + listaBases.get(b) + "," + acuraciaPrequencial[b][c][res]);
 				}
 			}
 		}
