@@ -50,7 +50,7 @@ public class ResultadoExperimento {
 		System.out.println(this.nomeExperimento);
 		System.out.println(this.getNumInstancias() + " instances processed with " + this.getAcuracia() + "% accuracy in "+this.getTempo()+" seconds.");
 		for (ResultadoIteracao resultadoIteracao : listaResultadoIteracoes) {
-			System.out.println("ITERACAO " + resultadoIteracao.getIteracao() + " ACURÁCIA " + resultadoIteracao.getAcuracia() + " PREQUENCIAL " + resultadoIteracao.getAcuraciaPrequencial());
+			//System.out.println("ITERACAO " + resultadoIteracao.getIteracao() + " ACURÁCIA " + resultadoIteracao.getAcuracia() + " PREQUENCIAL " + resultadoIteracao.getAcuraciaPrequencial());
 		}
 	}
 	
@@ -59,12 +59,12 @@ public class ResultadoExperimento {
 		//Gravar o CSV
         CSVUtil csv = new CSVUtil(path, nomeExperimento + ".csv");
         
-        csv.cabecalho("iteracao,acc_prequencial");
+        csv.cabecalho("iteracao,acc_prequencial,acuracia");
         
         
         for (ResultadoIteracao resultadoIteracao : listaResultadoIteracoes) {
         	csv.registro(resultadoIteracao.getIteracao() + ","
-        			+ resultadoIteracao.getAcuraciaPrequencial());
+        			+ resultadoIteracao.getAcuraciaPrequencial() + "," + resultadoIteracao.getAcuracia());
 		}
 
         csv.fechar();

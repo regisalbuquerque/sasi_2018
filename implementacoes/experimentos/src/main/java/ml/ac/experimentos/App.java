@@ -46,7 +46,12 @@ public class App
         resultadoExperimento.setNumInstancias(numberSamples);
         resultadoExperimento.setTempo(time);
         resultadoExperimento.setAcuracia(accuracy);
-        resultadoExperimento.gravaResultado30PartesCSV("/home/regis/Documents/git/sasi_2018/resultados_2/");
+        resultadoExperimento.gravaResultado30PartesCSV("/home/regis/Documents/git/regis/sasi_2018/resultados_4/");
+       
+        //resultadoExperimento.gravaResultadoCSV("/home/regis/Documents/git/regis/sasi_2018/resultados_3/");
+        //resultadoExperimento.imprimeResultado();
+        
+        
         return resultadoExperimento;
 	}
 	
@@ -62,6 +67,7 @@ public class App
         experimento1("LINE-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComEDDM());
         experimento1("LINE-" + EXPERIMENTO_CLASS_ADWIN,FabricaDeBases.baseLine(), FabricaDeClassificadores.classificadorComADWIN2());
 
+        
         experimento1("CIRCLE-" + EXPERIMENTO_CLASS_SIMPLES1, FabricaDeBases.baseCircle(), FabricaDeClassificadores.classificadorSimples());
         experimento1("CIRCLE-" + EXPERIMENTO_CLASS_DDM, FabricaDeBases.baseCircle(), FabricaDeClassificadores.classificadorComDDM());
         experimento1("CIRCLE-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseCircle(), FabricaDeClassificadores.classificadorComEDDM());
@@ -77,11 +83,14 @@ public class App
         experimento1("SINE1-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseSine1(), FabricaDeClassificadores.classificadorComEDDM());
         experimento1("SINE1-" + EXPERIMENTO_CLASS_ADWIN,FabricaDeBases.baseSine1(), FabricaDeClassificadores.classificadorComADWIN2());
     
+        
+        
         experimento1("ELEC-" + EXPERIMENTO_CLASS_SIMPLES1, FabricaDeBases.baseElec(), FabricaDeClassificadores.classificadorSimples());
         experimento1("ELEC-" + EXPERIMENTO_CLASS_DDM, FabricaDeBases.baseElec(), FabricaDeClassificadores.classificadorComDDM());
         experimento1("ELEC-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseElec(), FabricaDeClassificadores.classificadorComEDDM());
         experimento1("ELEC-" + EXPERIMENTO_CLASS_ADWIN,FabricaDeBases.baseElec(), FabricaDeClassificadores.classificadorComADWIN2());
     
+        
         experimento1("SPAM-" + EXPERIMENTO_CLASS_SIMPLES1, FabricaDeBases.baseSpam(), FabricaDeClassificadores.classificadorSimples());
         experimento1("SPAM-" + EXPERIMENTO_CLASS_DDM, FabricaDeBases.baseSpam(), FabricaDeClassificadores.classificadorComDDM());
         experimento1("SPAM-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseSpam(), FabricaDeClassificadores.classificadorComEDDM());
@@ -91,7 +100,7 @@ public class App
         experimento1("KDD-" + EXPERIMENTO_CLASS_DDM, FabricaDeBases.baseKDD(), FabricaDeClassificadores.classificadorComDDM());
         experimento1("KDD-" + EXPERIMENTO_CLASS_EDDM, FabricaDeBases.baseKDD(), FabricaDeClassificadores.classificadorComEDDM());
         experimento1("KDD-" + EXPERIMENTO_CLASS_ADWIN,FabricaDeBases.baseKDD(), FabricaDeClassificadores.classificadorComADWIN2());
-
+	
     	
     }
 }
