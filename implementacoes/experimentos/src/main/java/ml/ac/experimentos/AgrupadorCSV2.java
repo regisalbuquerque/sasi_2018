@@ -10,7 +10,7 @@ public class AgrupadorCSV2 {
 
 	public static void main(String[] args) {
 		
-		String path = "/home/regis/Documents/git/regis/sasi_2018/resultados_4/";
+		String path = "/home/regis/Documents/git/regis/sasi_2018/resultados_5/";
 		
 		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "EDDM", "ADWIN");
 		List<String> listaBases = Arrays.asList("LINE", "CIRCLE", "GAUSS", "SINE1", "ELEC", "SPAM", "KDD");
