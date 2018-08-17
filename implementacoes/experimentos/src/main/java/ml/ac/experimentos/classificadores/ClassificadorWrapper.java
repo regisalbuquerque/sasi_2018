@@ -110,6 +110,9 @@ public class ClassificadorWrapper extends AbstractClassifier implements MultiCla
                 }
                 this.newclassifier = ((Classifier) getPreparedClassOption(this.baseLearnerOption)).copy();
                 this.newclassifier.resetLearning();
+                
+                this.driftDetectionMethod = ((ChangeDetector) getPreparedClassOption(this.driftDetectionMethodOption)).copy();
+                
                 break;
 
             case DDM_INCONTROL_LEVEL:

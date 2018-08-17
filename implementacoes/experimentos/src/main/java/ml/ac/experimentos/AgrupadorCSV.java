@@ -10,9 +10,9 @@ public class AgrupadorCSV {
 
 	public static void main(String[] args) {
 		
-		String path = "/home/regis/Documents/git/sasi_2018/resultados_2/";
+		String path = "/home/regis/Documents/git/regis/sasi_2018/resultados_4/";
 		
-		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "EDDM");
+		List<String> listaClassificadores = Arrays.asList("Simples", "DDM", "EDDM", "ADWIN");
 		List<String> listaBases = Arrays.asList("LINE", "CIRCLE", "GAUSS", "SINE1", "ELEC", "SPAM", "KDD");
 		
 		int NUM_BASES = listaBases.size();
@@ -42,7 +42,7 @@ public class AgrupadorCSV {
 		
 		//Gravar o CSV UNICO
 		
-		CSVUtil csvUtil = new CSVUtil(path, "resultado_unificado_puro_ddm_eddm.csv");
+		CSVUtil csvUtil = new CSVUtil(path, "resultado_unificado_puro_ddm_eddm_adwin.csv");
 		
 		csvUtil.cabecalho("classificador,base,acc");
 		
